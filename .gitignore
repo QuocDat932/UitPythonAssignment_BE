@@ -1,5 +1,6 @@
-assignment_python_django/__pycache__/
-assignment_python_django/api/__pycache__/
-assignment_python_django/url/__pycache__/
-assignment_python_django/model/__pycache__/
-assignment_python_django/settings.py
+# Ignore __pycache__ folders
+**/__pycache__/
+# Ignore .pyc files
+*.pyc
+
+**/settings.py
