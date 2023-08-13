@@ -1,5 +1,14 @@
 
 class ResponseEntity:
+    """ Result data of api
+
+    :return
+        {   data: data of api,
+            status: status of API [True/False],
+            message: notification of API
+        }
+
+    """
     data = {}
     status = False
     message = ""

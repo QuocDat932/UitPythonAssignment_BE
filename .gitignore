@@ -3,4 +3,4 @@
 # Ignore .pyc files
 *.pyc
 
-**/settings.py
+**/settings.pys
