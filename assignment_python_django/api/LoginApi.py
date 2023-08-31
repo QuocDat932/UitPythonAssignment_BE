@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.db import connection
 from assignment_python_django.model.ResponseEntity import ResponseEntity
 from rest_framework.decorators import api_view
-from assignment_python_django.model.UserModel import User
+from assignment_python_django.model.UserModel import UserModel
 
 
 @api_view(["GET"])
@@ -47,7 +47,7 @@ def get_user_login(request):
     response_data = ResponseEntity()
 
     try:
-        user = User.objects.get(email=email, mssv=password)
+        user = UserModel.objects.get(email=email, mssv=password)
 
         user_data = {
             'user_id': user.user_id,
@@ -68,7 +68,7 @@ def get_user_login(request):
         response_data.set_status(True)
         response_data.set_message("Get Success User")
 
-    except User.DoesNotExist:
+    except UserModel.DoesNotExist:
         response_data.set_message("Does not exist User")
 
     return JsonResponse(response_data.get_json_data(), safe=False)

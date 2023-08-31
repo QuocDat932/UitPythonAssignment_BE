@@ -1,8 +1,8 @@
 from django.db import models
-from assignment_python_django.model.Role import Role
+from assignment_python_django.model.RoleModel import RoleModel
 
 
-class User(models.Model):
+class UserModel(models.Model):
     class Meta:
         db_table = "UIT_USER"
 
@@ -13,6 +13,6 @@ class User(models.Model):
     img = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
     birthday = models.DateTimeField
-    role = models.ForeignKey(Role, on_delete=models.CASCADE, db_column='USER_ROLE')
+    role = models.ForeignKey(RoleModel, on_delete=models.CASCADE, db_column='USER_ROLE')
     is_use = models.IntegerField()
 
