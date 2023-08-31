@@ -7,5 +7,8 @@ urlpatterns = [
     path('roles/post-save-role', RoleApi.save_role, name='save_role'),
 
     path('users/get-user-login', LoginApi.get_user_login, name='get_user_login'),
+    path('users/get-all-user-by-is-use', UserAPI.get_all_user_by_is_use, name='get_all_user_by_is_use'),
+    path('users/post-save-user', UserAPI.save_user, name='save_user'),
+    path('users/delete-user', UserAPI.delete_user, name='delete_user')
 ]
 
