@@ -113,7 +113,6 @@ class UserService:
     @staticmethod
     def delete_user(mssv):
         try:
-            print(">>>>>>>>>>", mssv)
             if mssv:
                 query = "DELETE FROM UIT_USER WHERE MSSV = %s"
                 with connection.cursor() as cursor:
