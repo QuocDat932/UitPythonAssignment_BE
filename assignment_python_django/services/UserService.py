@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.db import connection
 from assignment_python_django.services.RoleService import RoleService
 from assignment_python_django.model.User import User
+from assignment_python_django.model.Device import Device, DevicesAreProvidedForUser
 
 
 class UserService:
@@ -123,4 +124,26 @@ class UserService:
                 return -1
         except Exception as e:
             print("Fail when run Services UserService - delete_user: "+ str(e))
+            return -1
+
+
+    @staticmethod
+    def get_device_is_provided_for_user(user_id):
+        try:
+            number = 0
+            list_result = []
+            query = "SELECT d.DEVICE_NAME, d.BRAND, pr.date_provided, pr.date_recall, pr.description " \
+                    "FROM UIT_PROVIDED_DEVICES pr LEFT JOIN UIT_DEVICE d ON pr.DEVICE_ID = d.DEVICE_ID " \
+                    "WHERE pr.USER_ID = %s ;"
+
+            with connection.cursor() as cursor:
+                 cursor.execute(query, [user_id])
+                 result = cursor.fetchall()
+            for row in result:
+                number += 1
+                device = DevicesAreProvidedForUser(number, row[0], row[1], row[2], row[3], row[4])
+                list_result.append(device.get_json_data_device_is_provided_for_user())
+            return list_result
+        except Exception as e:
+            print(f"Fail when run UserService - get_device_provide_for_user:", str(e))
             return -1

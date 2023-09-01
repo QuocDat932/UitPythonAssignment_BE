@@ -68,3 +68,23 @@ def delete_user(request):
         result_data.set_message("Fail when Delete User")
 
     return JsonResponse(result_data.get_json_data(), safe=False)
+
+@api_view(['GET'])
+def get_device_is_provided_for_user(request):
+    result_data = ResponseEntity()
+    try:
+        user_id = request.GET.get("user_id")
+        data_services = UserService.get_device_is_provided_for_user(user_id)
+        if data_services != -1:
+            result_data.set_data(data_services)
+            result_data.set_status(True)
+            result_data.set_message("Success when get device provided by user")
+        else:
+            result_data.set_status(False)
+            result_data.set_message("Fail when get device provided by user")
+        return JsonResponse(result_data.get_json_data(),  safe = False, status = 200)
+    except Exception as e:
+        print("Fail when call API - get_device_provided_by_user: ", str(e))
+        result_data.set_status(False)
+        result_data.set_message("Fail when get device provided by user")
+        return JsonResponse(result_data.get_json_data(), safe = False, status = 500)
