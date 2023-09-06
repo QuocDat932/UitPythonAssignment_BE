@@ -7,6 +7,7 @@ from assignment_python_django.model.User import User
 class UserService:
 
     @staticmethod
+<<<<<<< HEAD
     def get_user_by_mssv(mssv):
         try:
             if mssv:
@@ -29,6 +30,8 @@ class UserService:
 
 
     @staticmethod
+=======
+>>>>>>> 8b9be57a5d8d1053e31e9668c9a711b24064461f
     def get_user_by_is_use(is_use):
         try:
             list_result = []
@@ -39,7 +42,7 @@ class UserService:
                     cursor.execute(query, [is_use])
                     result = cursor.fetchall()
             else:
-                query = "SELECT USER_ID, USER_NAME, MSSV, EMAIL, IMG, ADDRESS, BIRTHDAY, USER_ROLE, IS_USE FROM UIT_USER"
+                query = "SELECT USER_ID, USER_NAME, MSSV, EMAIL, IMG, ADDRESS, BIRTHDAY, USER_ROLE, IS_USE FROM UIT_USER "
                 with connection.cursor() as cursor:
                     cursor.execute(query)
                     result = cursor.fetchall()

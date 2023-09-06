@@ -18,10 +18,10 @@ def get_all_user_by_is_use(request):
     if data_services != -1:
         result_data.set_data(data_services)
         result_data.set_status(True)
-        result_data.set_message("Success when get User")
+        result_data.set_message("Success when call API")
     else:
         result_data.set_status(False)
-        result_data.set_message("Fail when get User")
+        result_data.set_message("Fail when call API")
 
     return JsonResponse(result_data.get_json_data(), safe=False)
 

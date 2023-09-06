@@ -60,3 +60,32 @@ class RoleService:
         except:
             print("Fail when Insert New Role: ")
             return -1
+
+    @staticmethod
+    def get_all_role_by_is_use(is_use):
+        try:
+            list_role = []
+            if is_use:
+                query = "SELECT role_id, role_name, description, is_use FROM UIT_ROLE WHERE is_use = %s"
+                with connection.cursor() as cursor:
+                    cursor.execute(query, [is_use])
+                    result = cursor.fetchall()
+            else:
+                query = "SELECT role_id, role_name, description, is_use FROM UIT_ROLE"
+                with connection.cursor() as cursor:
+                    cursor.execute(query)
+                    result = cursor.fetchall()
+
+            for row in result:
+                role_data = {
+                    "role_id": row[0],
+                    "role_name": row[1],
+                    "description": row[2],
+                    "is_use": row[3],
+                    "is_use_text": 'Đang Hoạt Động' if row[3] == 1 else 'Vô Hiệu Hoá'
+                }
+                list_role.append(role_data)
+            cursor.close()
+            return list_role
+        except Exception as e:
+            return -1
