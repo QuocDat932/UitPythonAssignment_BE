@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.db import connection
 from assignment_python_django.model.ResponseEntity import ResponseEntity
 from rest_framework.decorators import api_view
-from assignment_python_django.model.User import User
+from assignment_python_django.model.UserModel import User
 
 
 @api_view(["GET"])
