@@ -1,18 +1,20 @@
-from django.db import models
-from assignment_python_django.model.Role import Role
+class User:
+    def __init__(self, mssv: str, user_name: str, email: str, address: str, birthday: str, role_id: int, is_use: int):
+        self._mssv = mssv
+        self._user_name = user_name
+        self._email = email
+        self._address = address
+        self._birthday = birthday
+        self._role_id = role_id
+        self._is_use = is_use
 
-
-class User(models.Model):
-    class Meta:
-        db_table = "UIT_USER"
-
-    user_id = models.IntegerField(primary_key=True)
-    user_name = models.CharField(max_length=100)
-    mssv = models.CharField(max_length=10)
-    email = models.CharField(max_length=30)
-    img = models.CharField(max_length=50)
-    address = models.CharField(max_length=100)
-    birthday = models.DateTimeField
-    role = models.ForeignKey(Role, on_delete=models.CASCADE, db_column='USER_ROLE')
-    is_use = models.IntegerField()
-
+    def get_json_data(self):
+        return {
+            "mssv": self._mssv,
+            "user_name":self._user_name,
+            "email":self._email,
+            "address":self._address,
+            "birthday":self._birthday,
+            "role_id":self._role_id,
+            "is_use":self._is_use
+        }
