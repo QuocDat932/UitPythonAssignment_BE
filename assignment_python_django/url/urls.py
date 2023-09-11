@@ -1,5 +1,5 @@
 from django.urls import path
-from assignment_python_django.api import RoleApi, LoginApi, UserAPI
+from assignment_python_django.api import RoleApi, LoginApi, UserAPI, DevicesApi
 
 urlpatterns = [
     path('roles/get-all-role', RoleApi.get_all_role, name='get_all_role'),
@@ -16,6 +16,9 @@ urlpatterns = [
     path('users/get-all-user-by-is-use', UserAPI.get_all_user_by_is_use, name='get_all_user_by_is_use'),
     path('users/post-save-user', UserAPI.save_user, name='save_user'),
     path('users/delete-user', UserAPI.delete_user, name='delete_user'),
-    path('users/get-device-is-provided-for-user', UserAPI.get_device_is_provided_for_user, name='get_device_is_provided_for_user')
+    path('users/get-device-is-provided-for-user', UserAPI.get_device_is_provided_for_user, name='get_device_is_provided_for_user'),
+
+    path('devices/get-all-device', DevicesApi.get_all_devices, name="get_all_devices"),
+    path('devices/post-save-device', DevicesApi.post_save_devices, name="post_save_devices")
 ]
 
