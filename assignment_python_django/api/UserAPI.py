@@ -25,7 +25,6 @@ def get_all_user_by_is_use(request):
 
     return JsonResponse(result_data.get_json_data(), safe=False)
 
-
 @api_view(["POST"])
 def save_user(request):
     result_data = ResponseEntity()
@@ -48,7 +47,6 @@ def save_user(request):
         result_data.set_status(False)
         result_data.set_message("Fail when call API: " + str(e))
         return JsonResponse(result_data.get_json_data(), status=500)
-
 
 @api_view(["POST"])
 def delete_user(request):
@@ -88,3 +86,44 @@ def get_device_is_provided_for_user(request):
         result_data.set_status(False)
         result_data.set_message("Fail when get device provided by user")
         return JsonResponse(result_data.get_json_data(), safe = False, status = 500)
+
+@api_view(['GET'])
+def get_all_user_with_the_number_of_device(request):
+    result_data = ResponseEntity()
+    try:
+        data_services = UserService.get_all_user_with_the_number_of_device()
+        if data_services != -1:
+            result_data.set_data(data_services)
+            result_data.set_status(True)
+            result_data.set_message("Success when get all user with the number of device")
+        else:
+            result_data.set_status(False)
+            result_data.set_message("Fail when get all user with the number of device")
+        return JsonResponse(result_data.get_json_data(), safe=False, status=200)
+    except Exception as e:
+        print("Fail when call API - get_all_user_with_the_number_of_device: ", str(e))
+        result_data.set_status(False)
+        result_data.set_message("Fail when get all user with the number of device")
+        return JsonResponse(result_data.get_json_data(), safe=False, status=500)
+
+@api_view(['GET'])
+def get_data_user_by_provided_device(request):
+    result_data = ResponseEntity()
+    try:
+        device_id = request.GET.get("device_id")
+        data_services = UserService.get_data_user_by_provided_device(device_id)
+        if data_services != -1:
+            result_data.set_data(data_services)
+            result_data.set_status(True)
+            result_data.set_message("Success when get data user by provided device")
+        else:
+            result_data.set_status(False)
+            result_data.set_message("Fail when get data user by provided device")
+        return JsonResponse(result_data.get_json_data(), safe=False, status=200)
+    except Exception as e:
+        print("Fail when call API - get_data_user_by_provided_device: ", str(e))
+        result_data.set_status(False)
+        result_data.set_message("Fail when get data user by provided device")
+        return JsonResponse(result_data.get_json_data(), safe=False, status=500)
+
+

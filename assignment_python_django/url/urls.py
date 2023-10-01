@@ -17,8 +17,14 @@ urlpatterns = [
     path('users/post-save-user', UserAPI.save_user, name='save_user'),
     path('users/delete-user', UserAPI.delete_user, name='delete_user'),
     path('users/get-device-is-provided-for-user', UserAPI.get_device_is_provided_for_user, name='get_device_is_provided_for_user'),
+    path('users/get-all-user-with-the-number-of-device', UserAPI.get_all_user_with_the_number_of_device, name='get_all_user_with_the_number_of_device'),
+    path('users/get-data-user-by-provided-device', UserAPI.get_data_user_by_provided_device, name='get_data_user_by_provided_device'),
+
 
     path('devices/get-all-device', DevicesApi.get_all_devices, name="get_all_devices"),
-    path('devices/post-save-device', DevicesApi.post_save_devices, name="post_save_devices")
+    path('devices/post-save-device', DevicesApi.post_save_devices, name="post_save_devices"),
+    path('devices/get-devices-for-pupup-device', DevicesApi.get_devices_for_pupup_device, name="get_devices_for_pupup_device"),
+    path('devices/save-provided-device-for-user', DevicesApi.save_provided_device_for_user, name="save_provided_device_for_user"),
+    path('devices/statistics-the-number-of-device-provided-for-user', DevicesApi.statistics_the_number_of_device_provided_for_user, name="statistics_the_number_of_device_provided_for_user"),
 ]
 

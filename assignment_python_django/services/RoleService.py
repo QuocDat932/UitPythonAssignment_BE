@@ -46,7 +46,7 @@ class RoleService:
             new_role_id = RoleService.get_new_role_id()
             insert = "INSERT INTO UIT_ROLE (ROLE_ID, ROLE_NAME, DESCRIPTION, COLOR, IS_USE) VALUES (%s, %s, %s, %s, %s)"
             with connection.cursor() as cursor:
-                cursor.execute(insert, [role._role_id, role._role_name, role._description, role._color, role._is_use])
+                cursor.execute(insert, [new_role_id, role._role_name, role._description, role._color, role._is_use])
                 connection.commit()
 
             return RoleService.get_role_by_id(new_role_id)
